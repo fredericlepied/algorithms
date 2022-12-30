@@ -4,9 +4,7 @@ import sys
 class Graph:
     def __init__(self, num_vertices):
         self.num = num_vertices
-        self.graph = [
-            [0 for column in range(num_vertices)] for row in range(num_vertices)
-        ]
+        self.path = [0] * num_vertices
 
     def dijkstra(self, start):
         self.spt = []
@@ -34,6 +32,17 @@ class Graph:
                 if dist < self.dist[dst]:
                     self.graph[src][dst] = dist
                     self.dist[dst] = self.graph[src][dst]
+                    self.path[dst] = src
+
+    def print_paths(self, start):
+        for idx in range(self.num):
+            if idx != start:
+                path = [idx]
+                cur = idx
+                while cur != start:
+                    path = [self.path[cur]] + path
+                    cur = self.path[cur]
+                print("->".join([str(x) for x in path]))
 
 
 if __name__ == "__main__":
@@ -50,5 +59,6 @@ if __name__ == "__main__":
         [0, 0, 2, 0, 0, 0, 6, 7, 0],
     ]
     print(g.dijkstra(0))
+    g.print_paths(0)
 
 # dijkstra.py ends here

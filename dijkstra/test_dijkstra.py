@@ -18,9 +18,10 @@ class TestDijkstra(unittest.TestCase):
             [0, 0, 2, 0, 0, 0, 6, 7, 0],
         ]
         res = g.dijkstra(0)
-
         expected = [0, 4, 12, 19, 21, 11, 9, 8, 14]
         self.assertEqual(res, expected)
+        expected = [0, 0, 1, 2, 5, 6, 7, 0, 2]
+        self.assertEqual(g.path, expected)
 
 
 if __name__ == "__main__":
